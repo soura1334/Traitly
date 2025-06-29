@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Contact from "./pages/Contact";
 import { BackgroundBeams } from "./components/ui/background-beams";
 import About from "./pages/About";
+import Register from "./pages/Register";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </div>
