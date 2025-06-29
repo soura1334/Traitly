@@ -17,8 +17,20 @@ export default function Navbar() {
             )}
           </NavLink>
         </li>
-        <li>Contact</li>
-        <li>About</li>
+        <li>
+          <NavLink to="/contact">
+            {({ isActive }) => (
+              <span className={isActive ? "text-purple-600" : ""}>Contact</span>
+            )}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/about">
+            {({ isActive }) => (
+              <span className={isActive ? "text-purple-600" : ""}>About</span>
+            )}
+          </NavLink>
+        </li>
         <NavLink to="/login">
           {({ isActive }) => (
             <button className={`${isActive ? "bg-purple-600 hover:bg-purple-800" :"bg-blue-500 hover:bg-blue-800"} text-white p-2 rounded-lg cursor-pointer`}>

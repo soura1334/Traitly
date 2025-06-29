@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Navbar />
       <div className="flex justify-center items-center min-h-[85vh]">
         <div className="min-h-[70vh] min-w-[80vw] text-center">
@@ -16,6 +16,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }

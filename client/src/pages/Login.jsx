@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 export default function Login() {
   return (
-    <div>
+    <>
       <Navbar />
       <div className="flex justify-center items-center min-h-[85vh]">
         <form className="min-h-[70vh] min-w-[30vw] max-w-[30vw] bg-zinc-800 rounded-md px-10 flex flex-col justify-evenly" onSubmit={(e)=> e.preventDefault()}>
@@ -26,6 +26,6 @@ export default function Login() {
         </form>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
