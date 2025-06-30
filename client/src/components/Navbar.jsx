@@ -31,13 +31,6 @@ export default function Navbar() {
             )}
           </NavLink>
         </li>
-        <NavLink to="/login">
-          {({ isActive }) => (
-            <button className={`${isActive ? "bg-purple-600 hover:bg-purple-800" :"bg-blue-500 hover:bg-blue-800"} text-white p-2 rounded-lg cursor-pointer`}>
-              Login
-            </button>
-          )}
-        </NavLink>
       </ul>
     </nav>
   );
