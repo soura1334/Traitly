@@ -1,8 +1,24 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Home({ username, onChangeUsername }) {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const trimmed = username ? username.trim() : "";
+    if (trimmed !== "") {
+      setIsSubmitted(true);
+      navigate("/result", { state: { username: trimmed } });
+    }
+  }
+
+  const isDisabled = !username || username.trim() === "";
+
   return (
     <>
       <Navbar />
@@ -12,8 +28,8 @@ export default function Home({ username, onChangeUsername }) {
             Discover What Tweets Say About You
           </p>
           <p className="my-5 text-xl text-gray-500">
-            Traitly analyzes your public X profile to reveal your personality traits
-            and emotional tone using AI
+            Traitly analyzes your public X profile to reveal your personality
+            traits and emotional tone using AI
           </p>
           <p className="mb-5 text-xl text-gray-500">
             Generate personalized results like this:
@@ -26,22 +42,30 @@ export default function Home({ username, onChangeUsername }) {
             />
           </div>
           <form
-            className="my-5 flex justify-center gap-4"
-            onSubmit={(e) => e.preventDefault()}
+            className="my-5 flex flex-col items-center justify-center gap-4"
+            onSubmit={handleSubmit}
           >
-            <label>Enter your X username:</label>
-            <input
-              type="text"
-              className="bg-gray-500 rounded-lg relative px-2"
-              value={username}
-              onChange={(e) => onChangeUsername(e.target.value)}
-            />
-          </form>
-          <NavLink to="/result">
-            <button className="bg-blue-500 p-5 rounded-xl hover:bg-blue-900 cursor-pointer relative">
+            <div className="flex gap-4">
+              <label className="text-lg">Enter your X username:</label>
+              <input
+                type="text"
+                className="bg-gray-500 rounded-lg relative px-2"
+                value={username}
+                onChange={(e) => onChangeUsername(e.target.value)}
+              />
+            </div>
+            <button
+              type="submit"
+              className={`p-3 rounded-xl relative ${
+                isDisabled
+                  ? "cursor-not-allowed"
+                  : "hover:bg-blue-900 cursor-pointer"
+              } bg-blue-500`}
+              disabled={isDisabled}
+            >
               Analyze My Profile
             </button>
-          </NavLink>
+          </form>
         </div>
       </div>
       <Footer />

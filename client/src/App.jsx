@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 function App() {
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState("");
 
   function handleChangeUsername(val){
     setUsername(val);
