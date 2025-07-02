@@ -12,6 +12,8 @@ import {
 } from "recharts";
 import { useEffect, useState } from "react";
 
+const apiBaseUrl = process.env.API_BASE_URL;
+
 export default function Result() {
   const location = useLocation();
   const username = location.state?.username;
@@ -31,7 +33,7 @@ export default function Result() {
         setIsLoading(true);
         setError(""); 
 
-        const res = await fetch(`http://localhost:8080/analyze/${username}`);
+        const res = await fetch(`${apiBaseUrl}/analyze/${username}`);
 
         if (!res.ok) {
           throw new Error(`Server responded with status ${res.status}`);
@@ -67,7 +69,7 @@ export default function Result() {
   return (
     <>
       <Navbar />
-      <div className="flex justify-center p-6 min-h-[85vh] bg-zinc-900">
+      <div className="flex justify-center p-6 min-h-[85vh]">
         <div className="w-full max-w-2xl bg-zinc-800 rounded-2xl p-8 text-white flex flex-col items-center gap-6">
           <h1 className="text-4xl font-semibold text-center">Results</h1>
 
