@@ -6,21 +6,21 @@ export default function Contact() {
     <>
       <Navbar />
       <div className="flex justify-center m-10">
-        <div className=" max-w-[60vw] text-center">
-          <h1 className="text-4xl font-semibold">
+        <div className="lg:max-w-[60vw] text-center">
+          <h1 className="text-2xl lg:text-4xl font-semibold">
             Got a question, suggestion, or just want to say hi?
           </h1>
-          <h3 className="my-5 text-4xl font-semibold">
+          <h3 className="my-5 text-2xl lg:text-4xl font-semibold">
             We’d love to hear from you!
           </h3>
-          <p className="text-xl text-gray-500">
+          <p className="text-lg lg:text-xl text-gray-500">
             Whether you're curious about how Traitly works, want to report an
             issue, or just have something on your mind, drop us a message using
             the form below. We'll get back to you as soon as possible!
           </p>
-          <div className="flex justify-center text-left mt-10">
+          <div className="flex justify-center text-left mt-10 ">
             <form
-              className="min-h-[70vh] min-w-[30vw] max-w-[30vw] bg-zinc-800 rounded-md px-10 flex flex-col justify-around p-5"
+              className="min-h-[70vh] lg:min-w-[30vw] lg:max-w-[30vw] bg-zinc-800 rounded-md lg:px-10 flex flex-col justify-around w-full p-10 lg:p-5"
               onSubmit={(e) => e.preventDefault()}
             >
               <p className="text-center text-3xl">Reach Out</p>

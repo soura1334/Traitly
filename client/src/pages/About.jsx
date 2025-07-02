@@ -6,10 +6,10 @@ export default function About() {
   return (
     <>
       <Navbar />
-      <div className="flex justify-center min-h-[85vh] p-10">
+      <div className="flex justify-center lg:min-h-[85vh] p-10">
         <div className="max-w-[60vw] text-center">
-          <p className="text-5xl font-semibold mb-4">About Traitly</p>
-          <p className="text-lg text-gray-500 mb-5">
+          <p className="text-3xl lg:text-5xl font-semibold mb-4">About Traitly</p>
+          <p className="text-md lg:text-lg text-gray-500 mb-5">
             Traitly is a fun and insightful platform that analyzes Twitter
             profiles to uncover personality traits, emotional tone, and
             behavioral quirks — all powered by language AI. Whether you're
@@ -17,7 +17,7 @@ export default function About() {
             reflect you, Traitly gives you a smart and entertaining breakdown of
             your online identity.
           </p>
-          <p className="text-4xl mt-5 font-semibold">Features</p>
+          <p className="text-2xl lg:text-4xl mt-5 font-semibold">Features</p>
           <FeaturesSection />
         </div>
       </div>

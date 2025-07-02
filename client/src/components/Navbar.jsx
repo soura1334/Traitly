@@ -2,10 +2,10 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="bg-zinc-800 flex p-4 justify-around items-center ">
-      <div className="flex gap-4 relative">
+    <nav className="bg-zinc-800 flex p-2 justify-between lg:p-4 lg:justify-around items-center ">
+      <div className="flex gap-4 relative items-center">
         <img src="/logo.png" className="h-10" />
-        <NavLink to="/" className="text-4xl">
+        <NavLink to="/" className="text-xl lg:text-4xl">
           Traitly
         </NavLink>
       </div>

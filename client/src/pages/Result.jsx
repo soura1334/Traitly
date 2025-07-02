@@ -115,13 +115,13 @@ function ResultComp({ data, username }) {
 
   return (
     <div className="w-full bg-white relative rounded-xl">
-      <div className="h-[350px] p-4">
+      <div className="w-full max-w-sm mx-auto aspect-square ">
         <Chart radarData={radarData} />
       </div>
       <div className="text-black text-center px-4 py-3 border-t border-gray-300">
         <p>@{username}</p>
-        <p className="text-xl font-semibold">{data?.dominant_trait?.title}</p>
-        <p className="text-sm text-gray-700">
+        <p className="text-lg lg:text-xl font-semibold">{data?.dominant_trait?.title}</p>
+        <p className="text-xs lg:text-sm text-gray-700">
           {data?.dominant_trait?.description}
         </p>
       </div>
@@ -129,13 +129,21 @@ function ResultComp({ data, username }) {
   );
 }
 
+
 function Chart({ radarData }) {
   return (
-    <ResponsiveContainer>
-      <RadarChart data={radarData}>
+    <ResponsiveContainer width="100%" height="100%">
+      <RadarChart
+        data={radarData}
+        margin={{right: 60, left:30 }}
+      >
         <PolarGrid />
-        <PolarAngleAxis dataKey="trait" />
-        <PolarRadiusAxis angle={30} domain={[0, 100]} />
+        <PolarAngleAxis
+          dataKey="trait"
+          tick={{className:"text-xs lg:text-sm"}}
+          tickLine={false}
+        />
+        <PolarRadiusAxis angle={30} domain={[0, 100]}  />
         <Radar
           name="Trait Score"
           dataKey="score"
