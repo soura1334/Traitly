@@ -10,8 +10,8 @@ import {
   Radar,
   Tooltip,
 } from "recharts";
-import { useEffect, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import download from "downloadjs";
 
 export default function Result() {
   const location = useLocation();
@@ -20,6 +20,8 @@ export default function Result() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const resRef = useRef();
 
   useEffect(() => {
     async function getData() {
@@ -68,6 +70,16 @@ export default function Result() {
     getData();
   }, [username]);
 
+  const handleSave = async () => {
+    if (!resultImageRef.current) return;
+    try {
+      const dataUrl = await toPng(resultImageRef.current);
+      download(dataUrl, `traitly_${username}_result.png`);
+    } catch (err) {
+      console.error("Error generating image", err);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -83,11 +95,11 @@ export default function Result() {
             <p className="text-red-500 text-xl text-center flex flex-col justify-center h-full">{error}</p>
           ) : data && data.subtraits && data.dominant_trait ? (
             <>
-              <ResultComp data={data} username={username} />
+              <ResultComp data={data} username={username} resRef={resRef} />
               <div>
                 <p className="text-lg text-center mb-3">Share your Results:</p>
                 <div className="flex justify-center gap-4 relative">
-                  <button className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-900 cursor-pointer">
+                  <button className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-900 cursor-pointer" onClick={handleSave}>
                     Save
                   </button>
                   <button className="bg-black px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer">
@@ -109,7 +121,7 @@ export default function Result() {
   );
 }
 
-function ResultComp({ data, username }) {
+function ResultComp({ data, username, resRef }) {
   const radarData = data?.subtraits
     ? Object.entries(data.subtraits).map(([trait, score]) => ({
         trait,
@@ -118,7 +130,7 @@ function ResultComp({ data, username }) {
     : [];
 
   return (
-    <div className="w-full bg-white relative rounded-xl">
+    <div className="w-full bg-white relative rounded-xl" ref={resRef}>
       <div className="w-full max-w-sm mx-auto aspect-square ">
         <Chart radarData={radarData} />
       </div>
