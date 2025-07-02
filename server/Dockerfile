@@ -5,8 +5,11 @@ RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
+
 COPY --from=build /app/target/server-0.0.1-SNAPSHOT.jar app.jar
-COPY src/main/resources/application.properties src/main/resources/application.properties
+
 EXPOSE 8080
+
 CMD ["sh", "-c", "java -Dserver.port=$PORT -Dspring.config.location=/etc/secrets/application.properties -jar app.jar"]
+
 
