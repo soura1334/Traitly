@@ -71,9 +71,9 @@ export default function Result() {
   }, [username]);
 
   const handleSave = async () => {
-    if (!resultImageRef.current) return;
+    if (!resRef.current) return;
     try {
-      const dataUrl = await toPng(resultImageRef.current);
+      const dataUrl = await toPng(resRef.current);
       download(dataUrl, `traitly_${username}_result.png`);
     } catch (err) {
       console.error("Error generating image", err);
