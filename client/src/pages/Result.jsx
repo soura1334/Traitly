@@ -32,7 +32,10 @@ export default function Result() {
         setIsLoading(true);
         setError(""); 
 
-        const res = await fetch(`https://traitly.onrender.com//analyze/${username}`);
+        const res = await fetch(`https://traitly.onrender.com/analyze/${username}`, {
+          method: "GET",
+          mode: "cors",
+        });
 
         if (!res.ok) {
           throw new Error(`Server responded with status ${res.status}`);
