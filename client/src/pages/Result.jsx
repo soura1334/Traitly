@@ -12,7 +12,7 @@ import {
 } from "recharts";
 import { useEffect, useRef, useState } from "react";
 import download from "downloadjs";
-import {toPng} from "html-to-image";
+import { toPng } from "html-to-image";
 
 export default function Result() {
   const location = useLocation();
@@ -24,6 +24,16 @@ export default function Result() {
 
   const resRef = useRef();
 
+  const shareText = encodeURIComponent(
+    `${ data && `I got ${data?.dominant_trait}`}
+    Check out your Traitly personality result!`
+  );
+
+  const shareUrl = encodeURIComponent("https://traitly.netlify.app");
+
+  const twitterShareUrl = `https://x.com/intent/post?text=${shareText}&url=${shareUrl}`;
+  const whatsappShareUrl = `https://wa.me/?text=${shareText}%20${shareUrl}`;
+
   useEffect(() => {
     async function getData() {
       if (!username) {
@@ -33,12 +43,15 @@ export default function Result() {
 
       try {
         setIsLoading(true);
-        setError(""); 
+        setError("");
 
-        const res = await fetch(`https://traitly.onrender.com/analyze/${username}`, {
-          method: "GET",
-          mode: "cors",
-        });
+        const res = await fetch(
+          `https://traitly.onrender.com/analyze/${username}`,
+          {
+            method: "GET",
+            mode: "cors",
+          }
+        );
 
         if (!res.ok) {
           throw new Error(`Server responded with status ${res.status}`);
@@ -93,27 +106,44 @@ export default function Result() {
               <img src="/loader.svg" alt="Loading..." />
             </div>
           ) : error ? (
-            <p className="text-red-500 text-xl text-center flex flex-col justify-center h-full">{error}</p>
+            <p className="text-red-500 text-xl text-center flex flex-col justify-center h-full">
+              {error}
+            </p>
           ) : data && data.subtraits && data.dominant_trait ? (
             <>
               <ResultComp data={data} username={username} resRef={resRef} />
               <div>
                 <p className="text-lg text-center mb-3">Share your Results:</p>
                 <div className="flex justify-center gap-4 relative">
-                  <button className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-900 cursor-pointer" onClick={handleSave}>
+                  <button
+                    className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-900 cursor-pointer"
+                    onClick={handleSave}
+                  >
                     Save
                   </button>
-                  <button className="bg-black px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer">
+                  <a
+                    href={twitterShareUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer"
+                  >
                     X
-                  </button>
-                  <button className="bg-green-500 px-6 py-2 rounded-xl hover:bg-green-900 cursor-pointer">
+                  </a>
+                  <a
+                    href={whatsappShareUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-500 px-6 py-2 rounded-xl hover:bg-green-900 cursor-pointer"
+                  >
                     WhatsApp
-                  </button>
+                  </a>
                 </div>
               </div>
             </>
           ) : (
-            <p className="text-red-500 text-xl flex flex-col justify-center h-full">No valid data found.</p>
+            <p className="text-red-500 text-xl flex flex-col justify-center h-full">
+              No valid data found.
+            </p>
           )}
         </div>
       </div>
@@ -137,7 +167,9 @@ function ResultComp({ data, username, resRef }) {
       </div>
       <div className="text-black text-center px-4 py-3 border-t border-gray-300">
         <p>@{username}</p>
-        <p className="text-lg lg:text-xl font-semibold">{data?.dominant_trait?.title}</p>
+        <p className="text-lg lg:text-xl font-semibold">
+          {data?.dominant_trait?.title}
+        </p>
         <p className="text-xs lg:text-sm text-gray-700">
           {data?.dominant_trait?.description}
         </p>
@@ -146,21 +178,17 @@ function ResultComp({ data, username, resRef }) {
   );
 }
 
-
 function Chart({ radarData }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <RadarChart
-        data={radarData}
-        margin={{right: 60, left:30 }}
-      >
+      <RadarChart data={radarData} margin={{ right: 60, left: 30 }}>
         <PolarGrid />
         <PolarAngleAxis
           dataKey="trait"
-          tick={{className:"text-xs lg:text-sm"}}
+          tick={{ className: "text-xs lg:text-sm" }}
           tickLine={false}
         />
-        <PolarRadiusAxis angle={30} domain={[0, 100]}  />
+        <PolarRadiusAxis angle={30} domain={[0, 100]} />
         <Radar
           name="Trait Score"
           dataKey="score"
