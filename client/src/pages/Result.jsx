@@ -26,7 +26,7 @@ export default function Result() {
 
   const shareText = encodeURIComponent(
     `${ data && `I got ${data?.dominant_trait?.title}`}
-    Check out your Traitly personality result!`
+Check out your Traitly personality result!`
   );
 
   const shareUrl = encodeURIComponent("https://traitly.netlify.app");
