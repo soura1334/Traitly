@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import { useEffect, useRef, useState } from "react";
 import download from "downloadjs";
+import {toPng} from "html-to-image";
 
 export default function Result() {
   const location = useLocation();
