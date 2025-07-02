@@ -12,7 +12,6 @@ import {
 } from "recharts";
 import { useEffect, useState } from "react";
 
-const apiBaseUrl = process.env.API_BASE_URL;
 
 export default function Result() {
   const location = useLocation();
@@ -33,7 +32,7 @@ export default function Result() {
         setIsLoading(true);
         setError(""); 
 
-        const res = await fetch(`${apiBaseUrl}/analyze/${username}`);
+        const res = await fetch(`https://traitly.onrender.com//analyze/${username}`);
 
         if (!res.ok) {
           throw new Error(`Server responded with status ${res.status}`);
