@@ -125,7 +125,7 @@ Check out your Traitly personality result!`
                     href={twitterShareUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gray-700 px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer flex"
+                    className="bg-gray-700 px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer flex items-center justify-center gap-2"
                   >
                   <img src="/x.png" alt="Twitter Logo" className="w-5 h-5" />
                     X
