@@ -127,6 +127,7 @@ Check out your Traitly personality result!`
                     rel="noopener noreferrer"
                     className="bg-black px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer"
                   >
+                  <img src="/x.png" alt="Twitter Logo" className="w-5 h-5" />
                     X
                   </a>
                   <a
@@ -135,6 +136,7 @@ Check out your Traitly personality result!`
                     rel="noopener noreferrer"
                     className="bg-green-500 px-6 py-2 rounded-xl hover:bg-green-900 cursor-pointer"
                   >
+                  <img src="/whatsapp.png" alt="WhatsApp Logo" className="w-5 h-5" />
                     WhatsApp
                   </a>
                 </div>
