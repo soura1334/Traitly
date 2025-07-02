@@ -134,7 +134,7 @@ Check out your Traitly personality result!`
                     href={whatsappShareUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 px-6 py-2 rounded-xl hover:bg-green-900 cursor-pointer flex"
+                    className="bg-green-500 px-6 py-2 rounded-xl hover:bg-green-900 cursor-pointer flex items-center justify-center gap-2"
                   >
                   <img src="/whatsapp.png" alt="WhatsApp Logo" className="w-5 h-5" />
                     WhatsApp
