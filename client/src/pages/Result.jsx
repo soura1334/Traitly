@@ -25,7 +25,7 @@ export default function Result() {
   const resRef = useRef();
 
   const shareText = encodeURIComponent(
-    `${ data && `I got ${data?.dominant_trait}`}
+    `${ data && `I got ${data?.dominant_trait?.title}`}
     Check out your Traitly personality result!`
   );
 
