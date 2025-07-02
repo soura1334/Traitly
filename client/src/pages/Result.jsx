@@ -125,7 +125,7 @@ Check out your Traitly personality result!`
                     href={twitterShareUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-black px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer"
+                    className="bg-gray-700 px-6 py-2 rounded-xl hover:bg-gray-900 cursor-pointer flex"
                   >
                   <img src="/x.png" alt="Twitter Logo" className="w-5 h-5" />
                     X
@@ -134,7 +134,7 @@ Check out your Traitly personality result!`
                     href={whatsappShareUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 px-6 py-2 rounded-xl hover:bg-green-900 cursor-pointer"
+                    className="bg-green-500 px-6 py-2 rounded-xl hover:bg-green-900 cursor-pointer flex"
                   >
                   <img src="/whatsapp.png" alt="WhatsApp Logo" className="w-5 h-5" />
                     WhatsApp
